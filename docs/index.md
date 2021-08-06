@@ -256,6 +256,7 @@
   
 - [ondewo/nlu/session.proto](#ondewo/nlu/session.proto)
     - [AddSessionLabelsRequest](#ondewo.nlu.AddSessionLabelsRequest)
+    - [CreateSessionRequest](#ondewo.nlu.CreateSessionRequest)
     - [CreateSessionReviewRequest](#ondewo.nlu.CreateSessionReviewRequest)
     - [DeleteSessionRequest](#ondewo.nlu.DeleteSessionRequest)
     - [DetectIntentRequest](#ondewo.nlu.DetectIntentRequest)
@@ -362,6 +363,7 @@
 - [ondewo/qa/qa.proto](#ondewo/qa/qa.proto)
     - [GetAnswerRequest](#ondewo.qa.GetAnswerRequest)
     - [GetAnswerResponse](#ondewo.qa.GetAnswerResponse)
+    - [MetadataFilters](#ondewo.qa.MetadataFilters)
     - [RunScraperResponse](#ondewo.qa.RunScraperResponse)
     - [RunTrainingResponse](#ondewo.qa.RunTrainingResponse)
   
@@ -3220,7 +3222,7 @@ Optional. Contains information about a button.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| text | [string](#string) |  | Optional. The text to show on the button. |
+| text | [string](#string) |  | Note: One of the following is required: Optional. The text to show on the button. |
 | postback | [string](#string) |  | Optional. The text to send back to the Dialogflow API or a URI to open. |
 
 
@@ -3506,7 +3508,7 @@ Represents the prompts in the parameters.
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | The unique identifier of this prompt. Format: `projects/<Project ID>/agent/intents/<Intent ID>/parameters/<Parameter ID>/prompts/<Prompt ID>`. |
 | text | [string](#string) |  | Required. Text of the prompt |
-| language_code | [string](#string) |  | Optional. The language of the prompts. If not specified, the default language code will be used. |
+| language_code | [string](#string) |  | The language of the prompts. If not specified, the default language code will be used. |
 
 
 
@@ -4363,6 +4365,21 @@ Example: * `projects/<Project ID>/agent` |
 
 
 
+<a name="ondewo.nlu.CreateSessionRequest"></a>
+
+### CreateSessionRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| session_path | [string](#string) |  | Creates a session that collects all the conversation interactions between the machine and a user The unique identifier of a Session in an Agent Format: `projects/<PROJECT_ID>/agent/sessions/<SESSION_UUID>`. |
+
+
+
+
+
+
 <a name="ondewo.nlu.CreateSessionReviewRequest"></a>
 
 ### CreateSessionReviewRequest
@@ -5096,6 +5113,7 @@ user intent and respond.
 | StreamingDetectIntent | [StreamingDetectIntentRequest](#ondewo.nlu.StreamingDetectIntentRequest) stream | [StreamingDetectIntentResponse](#ondewo.nlu.StreamingDetectIntentResponse) stream | Processes a natural language query in audio format in a streaming fashion and returns structured, actionable data as a result. This method is only available via the gRPC API (not REST). |
 | ListSessions | [ListSessionsRequest](#ondewo.nlu.ListSessionsRequest) | [ListSessionsResponse](#ondewo.nlu.ListSessionsResponse) | SESSION RELATED ENDPOINTS *** // ListSessions: returns list of sessions from ondewo-kb; by default returns only session IDs |
 | GetSession | [GetSessionRequest](#ondewo.nlu.GetSessionRequest) | [Session](#ondewo.nlu.Session) | GetSession: returns a session(=conversation) from ondewo-kb |
+| CreateSession | [CreateSessionRequest](#ondewo.nlu.CreateSessionRequest) | [Session](#ondewo.nlu.Session) | CreateSession: creates and returns a session(=conversation) from ondewo-kb |
 | TrackSessionStep | [TrackSessionStepRequest](#ondewo.nlu.TrackSessionStepRequest) | [Session](#ondewo.nlu.Session) | TrackSessionStep: append to an existing session; creates it if not existing |
 | DeleteSession | [DeleteSessionRequest](#ondewo.nlu.DeleteSessionRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | DeleteSession: delete a session(=conversation) from ondewo-kb (for testing only) |
 | ListSessionLabels | [ListSessionLabelsRequest](#ondewo.nlu.ListSessionLabelsRequest) | [ListSessionLabelsResponse](#ondewo.nlu.ListSessionLabelsResponse) | SESSION-LABEL RELATED ENDPOINTS *** // |
@@ -6076,6 +6094,7 @@ The request message
 | threshold_retriever | [float](#float) |  | Threshold (minimal score) to give back retriever result |
 | threshold_overall | [float](#float) |  | Threshold (minimal score) overall probability |
 | reader_model_name | [string](#string) |  | Reader model name |
+| filters | [MetadataFilters](#ondewo.qa.MetadataFilters) | repeated | Optional. Filters applied to the metadata, to restrict the retrieved documents. |
 
 
 
@@ -6091,6 +6110,25 @@ The response message containing the greetings
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | query_result | [ondewo.nlu.DetectIntentResponse](#ondewo.nlu.DetectIntentResponse) |  | The results of the conversational query or event processing. |
+
+
+
+
+
+
+<a name="ondewo.qa.MetadataFilters"></a>
+
+### MetadataFilters
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| metadata_field | [string](#string) |  | Required. Name of the meta data field on which to apply filters on. |
+| filters_include | [string](#string) | repeated | Optional. Filters to restrict the possible values of the meta data. |
+| filters_exclude | [string](#string) | repeated | Optional. List of forbidden values of the meta data. |
+| regex_filter_include | [string](#string) |  | Optional. Regular expression which must be matched by the meta data. |
+| regex_filter_exclude | [string](#string) |  | Optional. Regular expression which must not be matched by the meta data. |
 
 
 

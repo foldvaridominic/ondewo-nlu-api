@@ -1370,6 +1370,8 @@
                       
                         <li><a href="#ondewo.nlu.Sessions.GetSession" class="title-badge method">GetSession</a></li>
                       
+                        <li><a href="#ondewo.nlu.Sessions.CreateSession" class="title-badge method">CreateSession</a></li>
+                      
                         <li><a href="#ondewo.nlu.Sessions.TrackSessionStep" class="title-badge method">TrackSessionStep</a></li>
                       
                         <li><a href="#ondewo.nlu.Sessions.DeleteSession" class="title-badge method">DeleteSession</a></li>
@@ -1400,6 +1402,10 @@
                     
                       <li>
                         <a href="#ondewo.nlu.AddSessionLabelsRequest" class="title-badge message">AddSessionLabelsRequest</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.nlu.CreateSessionRequest" class="title-badge message">CreateSessionRequest</a>
                       </li>
                     
                       <li>
@@ -1945,6 +1951,10 @@
                     
                       <li>
                         <a href="#ondewo.qa.GetAnswerResponse" class="title-badge message">GetAnswerResponse</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.qa.MetadataFilters" class="title-badge message">MetadataFilters</a>
                       </li>
                     
                       <li>
@@ -9225,15 +9235,15 @@ e.g., screen readers. </p></td>
                   <td>text</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Optional. The text to show on the button. </p></td>
+                  <td><p>Note: One of the following is required:
+Optional. The text to show on the button. </p></td>
                 </tr>
               
                 <tr>
                   <td>postback</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Optional. The text to send back to the Dialogflow API or a URI to
-open. </p></td>
+                  <td><p>Optional. The text to send back to the Dialogflow API or a URI to open. </p></td>
                 </tr>
               
             </tbody>
@@ -9833,7 +9843,7 @@ Format: `projects/<Project ID>/agent/intents/<Intent ID>/parameters/<Parameter I
                   <td>language_code</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Optional. The language of the prompts. If not specified, the default language code will be used. </p></td>
+                  <td><p>The language of the prompts. If not specified, the default language code will be used. </p></td>
                 </tr>
               
             </tbody>
@@ -11999,6 +12009,12 @@ ListSessions: returns list of sessions from ondewo-kb; by default returns only s
 
           GetSession: returns a session(=conversation) from ondewo-kb
         
+          <h4 id="ondewo.nlu.Sessions.CreateSession" class="title-badge method">CreateSession</h4>
+
+          <pre>rpc CreateSession (<a href="#ondewo.nlu.CreateSessionRequest">CreateSessionRequest</a>) returns (<a href="#ondewo.nlu.Session">Session)</a></pre>
+
+          CreateSession: creates and returns a session(=conversation) from ondewo-kb
+        
           <h4 id="ondewo.nlu.Sessions.TrackSessionStep" class="title-badge method">TrackSessionStep</h4>
 
           <pre>rpc TrackSessionStep (<a href="#ondewo.nlu.TrackSessionStepRequest">TrackSessionStepRequest</a>) returns (<a href="#ondewo.nlu.Session">Session)</a></pre>
@@ -12102,6 +12118,16 @@ as a side effect: also update training data in ondewo-cai
                 <td>GET</td>
                 <td>/v2/{session_id=projects/*/agent/sessions/*}</td>
                 <td></td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>CreateSession</td>
+                <td>POST</td>
+                <td>/v2/{parent=projects/*/agent}/sessions</td>
+                <td>*</td>
               </tr>
               
             
@@ -12235,6 +12261,32 @@ as a side effect: also update training data in ondewo-cai
                   <td><a href="#ondewo.nlu.Session.View">Session.View</a></td>
                   <td></td>
                   <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.nlu.CreateSessionRequest" class="title-badge message">CreateSessionRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>session_path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Creates a session that collects all the conversation interactions between the machine and a user
+The unique identifier of a Session in an Agent
+Format: `projects/<PROJECT_ID>/agent/sessions/<SESSION_UUID>`. </p></td>
                 </tr>
               
             </tbody>
@@ -16474,6 +16526,13 @@ internally with the specified event as input. </p></td>
                   <td><p>Reader model name </p></td>
                 </tr>
               
+                <tr>
+                  <td>filters</td>
+                  <td><a href="#ondewo.qa.MetadataFilters">MetadataFilters</a></td>
+                  <td>repeated</td>
+                  <td><p>Optional. Filters applied to the metadata, to restrict the retrieved documents. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -16496,6 +16555,58 @@ internally with the specified event as input. </p></td>
                   <td><a href="#ondewo.nlu.DetectIntentResponse">ondewo.nlu.DetectIntentResponse</a></td>
                   <td></td>
                   <td><p>The results of the conversational query or event processing. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.qa.MetadataFilters" class="title-badge message">MetadataFilters</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>metadata_field</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Required. Name of the meta data field on which to apply filters on. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>filters_include</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Optional. Filters to restrict the possible values of the meta data. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>filters_exclude</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Optional. List of forbidden values of the meta data. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>regex_filter_include</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional. Regular expression which must be matched by the meta data. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>regex_filter_exclude</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional. Regular expression which must not be matched by the meta data. </p></td>
                 </tr>
               
             </tbody>
