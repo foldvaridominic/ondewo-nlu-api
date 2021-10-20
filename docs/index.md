@@ -15,6 +15,9 @@
     - [DeleteResourcesRequest](#ondewo.nlu.DeleteResourcesRequest)
     - [ExportAgentRequest](#ondewo.nlu.ExportAgentRequest)
     - [ExportAgentResponse](#ondewo.nlu.ExportAgentResponse)
+    - [ExportBenchmarkAgentRequest](#ondewo.nlu.ExportBenchmarkAgentRequest)
+    - [ExportBenchmarkAgentResponse](#ondewo.nlu.ExportBenchmarkAgentResponse)
+    - [ExportBenchmarkAgentResponse.TrainingPhrasesEntry](#ondewo.nlu.ExportBenchmarkAgentResponse.TrainingPhrasesEntry)
     - [ExportResourcesRequest](#ondewo.nlu.ExportResourcesRequest)
     - [ExportResourcesResponse](#ondewo.nlu.ExportResourcesResponse)
     - [GetAgentRequest](#ondewo.nlu.GetAgentRequest)
@@ -60,6 +63,8 @@
     - [DataEnrichmentConfig](#ondewo.nlu.DataEnrichmentConfig)
     - [EntityDetected](#ondewo.nlu.EntityDetected)
     - [EntityEnrichmentConfig](#ondewo.nlu.EntityEnrichmentConfig)
+    - [EntityTypeFuzzyNerConfig](#ondewo.nlu.EntityTypeFuzzyNerConfig)
+    - [ExtractEntitiesFuzzyRequest](#ondewo.nlu.ExtractEntitiesFuzzyRequest)
     - [ExtractEntitiesRequest](#ondewo.nlu.ExtractEntitiesRequest)
     - [ExtractEntitiesResponse](#ondewo.nlu.ExtractEntitiesResponse)
     - [FastTextEnrichmentConfig](#ondewo.nlu.FastTextEnrichmentConfig)
@@ -80,6 +85,8 @@
     - [Word2VecEnrichmentConfig](#ondewo.nlu.Word2VecEnrichmentConfig)
     - [WordNetAugEnrichmentConfig](#ondewo.nlu.WordNetAugEnrichmentConfig)
     - [XLNetAugEnrichmentConfig](#ondewo.nlu.XLNetAugEnrichmentConfig)
+  
+    - [EntityTypeFuzzyNerConfig.FuzzyNerAlgorithm](#ondewo.nlu.EntityTypeFuzzyNerConfig.FuzzyNerAlgorithm)
   
     - [AiServices](#ondewo.nlu.AiServices)
   
@@ -363,9 +370,17 @@
 - [ondewo/qa/qa.proto](#ondewo/qa/qa.proto)
     - [GetAnswerRequest](#ondewo.qa.GetAnswerRequest)
     - [GetAnswerResponse](#ondewo.qa.GetAnswerResponse)
-    - [MetadataFilters](#ondewo.qa.MetadataFilters)
+    - [GetProjectConfigRequest](#ondewo.qa.GetProjectConfigRequest)
+    - [GetProjectConfigResponse](#ondewo.qa.GetProjectConfigResponse)
+    - [GetServerStateResponse](#ondewo.qa.GetServerStateResponse)
+    - [ListProjectIdsResponse](#ondewo.qa.ListProjectIdsResponse)
+    - [RunScraperRequest](#ondewo.qa.RunScraperRequest)
     - [RunScraperResponse](#ondewo.qa.RunScraperResponse)
+    - [RunScraperResponse.ScraperContainer](#ondewo.qa.RunScraperResponse.ScraperContainer)
     - [RunTrainingResponse](#ondewo.qa.RunTrainingResponse)
+    - [UpdateDatabaseRequest](#ondewo.qa.UpdateDatabaseRequest)
+    - [UpdateDatabaseResponse](#ondewo.qa.UpdateDatabaseResponse)
+    - [UrlFilter](#ondewo.qa.UrlFilter)
   
     - [QA](#ondewo.qa.QA)
   
@@ -575,6 +590,57 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 
 
 
+<a name="ondewo.nlu.ExportBenchmarkAgentRequest"></a>
+
+### ExportBenchmarkAgentRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Agent related info Required. The project that the agent to export is associated with. Format: `projects/<Project ID>`. |
+| compression_level | [int32](#int32) |  | Optional. The compression level of the zip file created. Valid range 1-9; the grpc-default value 0 will be mapped to 1, other values cause an error in the request validation handler. |
+| test_size | [float](#float) |  | Train-test split related parameters, for further info, check https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html default values come from API definition above Optional: bigger than zero |
+| train_size | [float](#float) |  | Optional: bigger than zero |
+| random_state | [int32](#int32) |  | Optional: random seed |
+
+
+
+
+
+
+<a name="ondewo.nlu.ExportBenchmarkAgentResponse"></a>
+
+### ExportBenchmarkAgentResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| agent_content | [bytes](#bytes) |  |  |
+| training_phrases | [ExportBenchmarkAgentResponse.TrainingPhrasesEntry](#ondewo.nlu.ExportBenchmarkAgentResponse.TrainingPhrasesEntry) | repeated | Key is the language code, value is the corresponding ListTrainingPhrasesResponse |
+
+
+
+
+
+
+<a name="ondewo.nlu.ExportBenchmarkAgentResponse.TrainingPhrasesEntry"></a>
+
+### ExportBenchmarkAgentResponse.TrainingPhrasesEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [ListTrainingPhrasesResponse](#ondewo.nlu.ListTrainingPhrasesResponse) |  |  |
+
+
+
+
+
+
 <a name="ondewo.nlu.ExportResourcesRequest"></a>
 
 ### ExportResourcesRequest
@@ -620,7 +686,7 @@ The request message for [Agents.GetAgent][google.cloud.dialogflow.v2.Agents.GetA
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: `projects/<Project ID>`. |
+| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: `projects/<Project ID>/agents`. |
 | agent_view | [AgentView](#ondewo.nlu.AgentView) |  | Optional. Specify the view of the returned agent (full view by default) |
 
 
@@ -1220,6 +1286,7 @@ Operation <response: [google.protobuf.Empty][google.protobuf.Empty], metadata: [
 | ExportAgent | [ExportAgentRequest](#ondewo.nlu.ExportAgentRequest) | [.google.longrunning.Operation](#google.longrunning.Operation) | Exports the specified agent to a ZIP file.
 
 Operation <response: [ExportAgentResponse][google.cloud.dialogflow.v2.ExportAgentResponse], metadata: [google.protobuf.Struct][google.protobuf.Struct]> |
+| ExportBenchmarkAgent | [ExportBenchmarkAgentRequest](#ondewo.nlu.ExportBenchmarkAgentRequest) | [.google.longrunning.Operation](#google.longrunning.Operation) | Exports the specified train agent to a ZIP file after train-test split, returns the test TrainingPhrase list. |
 | ImportAgent | [ImportAgentRequest](#ondewo.nlu.ImportAgentRequest) | [.google.longrunning.Operation](#google.longrunning.Operation) | Imports the specified agent from a ZIP file.
 
 Uploads new intents and entity types without deleting the existing ones. Intents and entity types with the same name are replaced with the new versions from ImportAgentRequest.
@@ -1349,6 +1416,45 @@ Operation <response: [google.protobuf.Empty][google.protobuf.Empty], metadata: [
 | is_active | [bool](#bool) |  |  |
 | enrichment_factor | [int32](#int32) |  |  |
 | execution_order | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="ondewo.nlu.EntityTypeFuzzyNerConfig"></a>
+
+### EntityTypeFuzzyNerConfig
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| entity_type | [EntityType](#ondewo.nlu.EntityType) |  | The Entity Type |
+| minimal_score | [float](#float) |  | Optional. Overrides the minimal score in ExtractEntitiesFuzzyRequest. |
+| entity_values | [string](#string) | repeated | Optional. If defined, only entity value from this list are considered. |
+| algorithm | [EntityTypeFuzzyNerConfig.FuzzyNerAlgorithm](#ondewo.nlu.EntityTypeFuzzyNerConfig.FuzzyNerAlgorithm) |  | Optional. Specify the Fuzzy Ner algorithm
+
+Should not use allow_overlaps here, since its default value is False bool allow_overlaps = 5; |
+
+
+
+
+
+
+<a name="ondewo.nlu.ExtractEntitiesFuzzyRequest"></a>
+
+### ExtractEntitiesFuzzyRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | the parent of the request Format: `projects/<Project ID>`. |
+| text | [string](#string) |  | The text to be analyzed |
+| potential_entities | [EntityTypeFuzzyNerConfig](#ondewo.nlu.EntityTypeFuzzyNerConfig) | repeated | Potential entities to be extracted from the text with entity-specific configs |
+| minimal_score | [float](#float) |  | Minimal similarity score to consider entity as "matched" |
+| allow_overlaps | [bool](#bool) |  | Optional. Whether or not entities are allowed to overlap. |
 
 
 
@@ -1699,6 +1805,18 @@ The request to detect parameters.
 
  <!-- end messages -->
 
+
+<a name="ondewo.nlu.EntityTypeFuzzyNerConfig.FuzzyNerAlgorithm"></a>
+
+### EntityTypeFuzzyNerConfig.FuzzyNerAlgorithm
+Enum of fuzzy ner algorithms
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| PREFILTER_LEVENSHTEIN | 0 |  |
+| LOCAL_MAXIMUM | 1 |  |
+
+
  <!-- end enums -->
 
  <!-- end HasExtensions -->
@@ -1717,6 +1835,7 @@ The Central class defining the ondewo ai services
 | GetAlternativeSentences | [GetAlternativeSentencesRequest](#ondewo.nlu.GetAlternativeSentencesRequest) | [GetAlternativeSentencesResponse](#ondewo.nlu.GetAlternativeSentencesResponse) |  |
 | GetAlternativeTrainingPhrases | [GetAlternativeTrainingPhrasesRequest](#ondewo.nlu.GetAlternativeTrainingPhrasesRequest) | [GetAlternativeTrainingPhrasesResponse](#ondewo.nlu.GetAlternativeTrainingPhrasesResponse) |  |
 | GetSynonyms | [GetSynonymsRequest](#ondewo.nlu.GetSynonymsRequest) | [GetSynonymsResponse](#ondewo.nlu.GetSynonymsResponse) |  |
+| ExtractEntitiesFuzzy | [ExtractEntitiesFuzzyRequest](#ondewo.nlu.ExtractEntitiesFuzzyRequest) | [ExtractEntitiesResponse](#ondewo.nlu.ExtractEntitiesResponse) | Processes a natural language query and returns detected entities |
 
  <!-- end services -->
 
@@ -3077,6 +3196,8 @@ action is an extraction of a user command or sentence semantics.
 | is_end_of_deviation | [bool](#bool) |  | Optional. Indicates whether the intent ends a deviation in conversation flow |
 | training_phrase_count | [int32](#int32) |  | Optional. Total count of training phrases associated to the intent. |
 | status | [Intent.IntentStatus](#ondewo.nlu.Intent.IntentStatus) |  | Indicates whether the intent is active or not |
+| start_date | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Optional. Provides information that can be used in custom scripts |
+| end_date | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Optional. Provides information that can be used in custom scripts |
 
 
 
@@ -3827,6 +3948,9 @@ Represents the type of intents to filter by in the "List Intents" request
 | ALL_INTENTS | 0 | represent all intents |
 | DEFAULT_INTENTS | 1 | represent the default intents |
 | USER_DEFINED_INTENTS | 2 | represent the user defined (custom) intents |
+| DATE_EXPIRED_INTENTS | 3 | represents the intents that had its end_date elapsed |
+| DATE_ACTIVE_INTENTS | 4 | represents the intents that its start_date began but had not yet expired |
+| DATE_UPCOMING_INTENTS | 5 | represent the intents that are still expecting its start_date to begin |
 
 
 
@@ -3842,6 +3966,8 @@ Represents the type of intents to filter by in the "List Intents" request
 | SORT_INTENT_BY_CREATION_DATE | 2 |  |
 | SORT_INTENT_BY_LAST_UPDATED | 3 |  |
 | SORT_INTENT_BY_USERSAYS_COUNT | 4 |  |
+| SORT_INTENT_BY_START_DATE | 5 |  |
+| SORT_INTENT_BY_END_DATE | 6 |  |
 
 
 
@@ -3988,6 +4114,7 @@ can be a sub-operation itself
 | RESTORE_AGENT | 5 | restore agent |
 | BUILD_AGENT_CACHE | 6 | build agent cache |
 | TRAIN_AGENT | 7 | train agent |
+| EXPORT_BENCHMARK_AGENT | 8 | export benchmark agent to a zip file |
 
 
 
@@ -4373,7 +4500,12 @@ Example: * `projects/<Project ID>/agent` |
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| session_path | [string](#string) |  | Creates a session that collects all the conversation interactions between the machine and a user The unique identifier of a Session in an Agent Format: `projects/<PROJECT_ID>/agent/sessions/<SESSION_UUID>`. |
+| parent | [string](#string) |  | Creates a session that collects all the conversation interactions between the machine and a user The unique identifier of an Agent Format: `projects/<PROJECT_ID>/agent`.
+
+Required. |
+| session_uuid | [string](#string) |  | The unique UUID of a Session Format: UUID Version 4, e.g. 2f59fad2-06bc-4730-9920-d3148f28f357
+
+Optional. If not provided, it will be auto-generated |
 
 
 
@@ -6087,14 +6219,14 @@ The request message
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| session_id | [string](#string) |  | Required. The name of the QA session. |
-| text | [ondewo.nlu.TextInput](#ondewo.nlu.TextInput) |  | Required. The context of the request. A string, in the form of a sentence. |
+| session_id | [string](#string) |  | Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`. It's up to the API caller to choose an appropriate session ID. It can be a random number or some type of user identifier (preferably hashed). The length of the session ID must not exceed 36 bytes. |
+| text | [ondewo.nlu.TextInput](#ondewo.nlu.TextInput) |  | Required. The context of the request. A message containing a string (in the form of a sentence) and a language code. |
 | max_num_answers | [int32](#int32) |  | Maximal number of answers returned |
 | threshold_reader | [float](#float) |  | Threshold (minimal score) to give back reader result |
 | threshold_retriever | [float](#float) |  | Threshold (minimal score) to give back retriever result |
 | threshold_overall | [float](#float) |  | Threshold (minimal score) overall probability |
 | reader_model_name | [string](#string) |  | Reader model name |
-| filters | [MetadataFilters](#ondewo.qa.MetadataFilters) | repeated | Optional. Filters applied to the metadata, to restrict the retrieved documents. |
+| url_filter | [UrlFilter](#ondewo.qa.UrlFilter) |  | Optional. Filters applied to the urls, to restrict the retrieved documents. |
 
 
 
@@ -6116,19 +6248,75 @@ The response message containing the greetings
 
 
 
-<a name="ondewo.qa.MetadataFilters"></a>
+<a name="ondewo.qa.GetProjectConfigRequest"></a>
 
-### MetadataFilters
+### GetProjectConfigRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| metadata_field | [string](#string) |  | Required. Name of the meta data field on which to apply filters on. |
-| filters_include | [string](#string) | repeated | Optional. Filters to restrict the possible values of the meta data. |
-| filters_exclude | [string](#string) | repeated | Optional. List of forbidden values of the meta data. |
-| regex_filter_include | [string](#string) |  | Optional. Regular expression which must be matched by the meta data. |
-| regex_filter_exclude | [string](#string) |  | Optional. Regular expression which must not be matched by the meta data. |
+| project_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="ondewo.qa.GetProjectConfigResponse"></a>
+
+### GetProjectConfigResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| config_serialized | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="ondewo.qa.GetServerStateResponse"></a>
+
+### GetServerStateResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| server_is_ready | [bool](#bool) |  | Whether or not the server is ready to accept requests |
+
+
+
+
+
+
+<a name="ondewo.qa.ListProjectIdsResponse"></a>
+
+### ListProjectIdsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| project_ids | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="ondewo.qa.RunScraperRequest"></a>
+
+### RunScraperRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| project_ids | [string](#string) | repeated | List of project_ids |
 
 
 
@@ -6138,6 +6326,21 @@ The response message containing the greetings
 <a name="ondewo.qa.RunScraperResponse"></a>
 
 ### RunScraperResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| scraper_containers | [RunScraperResponse.ScraperContainer](#ondewo.qa.RunScraperResponse.ScraperContainer) | repeated |  |
+
+
+
+
+
+
+<a name="ondewo.qa.RunScraperResponse.ScraperContainer"></a>
+
+### RunScraperResponse.ScraperContainer
 
 
 
@@ -6166,6 +6369,53 @@ The response message containing the greetings
 
 
 
+
+<a name="ondewo.qa.UpdateDatabaseRequest"></a>
+
+### UpdateDatabaseRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| project_ids | [string](#string) | repeated | List of project_ids of which to update the database |
+
+
+
+
+
+
+<a name="ondewo.qa.UpdateDatabaseResponse"></a>
+
+### UpdateDatabaseResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| error_messages | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="ondewo.qa.UrlFilter"></a>
+
+### UrlFilter
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| allowed_values | [string](#string) | repeated | Optional. List of values that the metadata_field 'url' is allowed to take. |
+| regex_filter_include | [string](#string) |  | Optional. Regular expression which must be matched by the meta data. |
+| regex_filter_exclude | [string](#string) |  | Optional. Regular expression which must not be matched by the meta data. |
+
+
+
+
+
  <!-- end messages -->
 
  <!-- end enums -->
@@ -6181,8 +6431,12 @@ The response message containing the greetings
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | GetAnswer | [GetAnswerRequest](#ondewo.qa.GetAnswerRequest) | [GetAnswerResponse](#ondewo.qa.GetAnswerResponse) |  |
-| RunScraper | [.google.protobuf.Empty](#google.protobuf.Empty) | [RunScraperResponse](#ondewo.qa.RunScraperResponse) |  |
+| RunScraper | [RunScraperRequest](#ondewo.qa.RunScraperRequest) | [RunScraperResponse](#ondewo.qa.RunScraperResponse) |  |
+| UpdateDatabase | [UpdateDatabaseRequest](#ondewo.qa.UpdateDatabaseRequest) | [UpdateDatabaseResponse](#ondewo.qa.UpdateDatabaseResponse) |  |
 | RunTraining | [.google.protobuf.Empty](#google.protobuf.Empty) | [RunTrainingResponse](#ondewo.qa.RunTrainingResponse) |  |
+| GetServerState | [.google.protobuf.Empty](#google.protobuf.Empty) | [GetServerStateResponse](#ondewo.qa.GetServerStateResponse) |  |
+| ListProjectIds | [.google.protobuf.Empty](#google.protobuf.Empty) | [ListProjectIdsResponse](#ondewo.qa.ListProjectIdsResponse) |  |
+| GetProjectConfig | [GetProjectConfigRequest](#ondewo.qa.GetProjectConfigRequest) | [GetProjectConfigResponse](#ondewo.qa.GetProjectConfigResponse) |  |
 
  <!-- end services -->
 

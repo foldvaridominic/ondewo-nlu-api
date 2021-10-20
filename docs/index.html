@@ -74,6 +74,8 @@
                       
                         <li><a href="#ondewo.nlu.Agents.ExportAgent" class="title-badge method">ExportAgent</a></li>
                       
+                        <li><a href="#ondewo.nlu.Agents.ExportBenchmarkAgent" class="title-badge method">ExportBenchmarkAgent</a></li>
+                      
                         <li><a href="#ondewo.nlu.Agents.ImportAgent" class="title-badge method">ImportAgent</a></li>
                       
                         <li><a href="#ondewo.nlu.Agents.OptimizeRankingMatch" class="title-badge method">OptimizeRankingMatch</a></li>
@@ -144,6 +146,18 @@
                     
                       <li>
                         <a href="#ondewo.nlu.ExportAgentResponse" class="title-badge message">ExportAgentResponse</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.nlu.ExportBenchmarkAgentRequest" class="title-badge message">ExportBenchmarkAgentRequest</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.nlu.ExportBenchmarkAgentResponse" class="title-badge message">ExportBenchmarkAgentResponse</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.nlu.ExportBenchmarkAgentResponse.TrainingPhrasesEntry" class="title-badge message">ExportBenchmarkAgentResponse.TrainingPhrasesEntry</a>
                       </li>
                     
                       <li>
@@ -320,6 +334,8 @@
                       
                         <li><a href="#ondewo.nlu.AiServices.GetSynonyms" class="title-badge method">GetSynonyms</a></li>
                       
+                        <li><a href="#ondewo.nlu.AiServices.ExtractEntitiesFuzzy" class="title-badge method">ExtractEntitiesFuzzy</a></li>
+                      
                       </ul>
                       
                     </li>
@@ -352,6 +368,14 @@
                     
                       <li>
                         <a href="#ondewo.nlu.EntityEnrichmentConfig" class="title-badge message">EntityEnrichmentConfig</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.nlu.EntityTypeFuzzyNerConfig" class="title-badge message">EntityTypeFuzzyNerConfig</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.nlu.ExtractEntitiesFuzzyRequest" class="title-badge message">ExtractEntitiesFuzzyRequest</a>
                       </li>
                     
                       <li>
@@ -436,6 +460,15 @@
                     
                   </ul>
                   
+                  
+                  <a href="#ondewo/nlu/aiservices.proto-enums">Enums</a>
+                  <ul>
+                    
+                      <li>
+                        <a href="#ondewo.nlu.EntityTypeFuzzyNerConfig.FuzzyNerAlgorithm" class="title-badge enum">EntityTypeFuzzyNerConfig.FuzzyNerAlgorithm</a>
+                      </li>
+                    
+                  </ul>
                   
                   
                 </div>
@@ -1933,7 +1966,15 @@
                       
                         <li><a href="#ondewo.qa.QA.RunScraper" class="title-badge method">RunScraper</a></li>
                       
+                        <li><a href="#ondewo.qa.QA.UpdateDatabase" class="title-badge method">UpdateDatabase</a></li>
+                      
                         <li><a href="#ondewo.qa.QA.RunTraining" class="title-badge method">RunTraining</a></li>
+                      
+                        <li><a href="#ondewo.qa.QA.GetServerState" class="title-badge method">GetServerState</a></li>
+                      
+                        <li><a href="#ondewo.qa.QA.ListProjectIds" class="title-badge method">ListProjectIds</a></li>
+                      
+                        <li><a href="#ondewo.qa.QA.GetProjectConfig" class="title-badge method">GetProjectConfig</a></li>
                       
                       </ul>
                       
@@ -1954,7 +1995,23 @@
                       </li>
                     
                       <li>
-                        <a href="#ondewo.qa.MetadataFilters" class="title-badge message">MetadataFilters</a>
+                        <a href="#ondewo.qa.GetProjectConfigRequest" class="title-badge message">GetProjectConfigRequest</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.qa.GetProjectConfigResponse" class="title-badge message">GetProjectConfigResponse</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.qa.GetServerStateResponse" class="title-badge message">GetServerStateResponse</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.qa.ListProjectIdsResponse" class="title-badge message">ListProjectIdsResponse</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.qa.RunScraperRequest" class="title-badge message">RunScraperRequest</a>
                       </li>
                     
                       <li>
@@ -1962,7 +2019,23 @@
                       </li>
                     
                       <li>
+                        <a href="#ondewo.qa.RunScraperResponse.ScraperContainer" class="title-badge message">RunScraperResponse.ScraperContainer</a>
+                      </li>
+                    
+                      <li>
                         <a href="#ondewo.qa.RunTrainingResponse" class="title-badge message">RunTrainingResponse</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.qa.UpdateDatabaseRequest" class="title-badge message">UpdateDatabaseRequest</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.qa.UpdateDatabaseResponse" class="title-badge message">UpdateDatabaseResponse</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.qa.UrlFilter" class="title-badge message">UrlFilter</a>
                       </li>
                     
                   </ul>
@@ -2280,6 +2353,12 @@ Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
 Operation <response: [ExportAgentResponse][google.cloud.dialogflow.v2.ExportAgentResponse],
            metadata: [google.protobuf.Struct][google.protobuf.Struct]>
         
+          <h4 id="ondewo.nlu.Agents.ExportBenchmarkAgent" class="title-badge method">ExportBenchmarkAgent</h4>
+
+          <pre>rpc ExportBenchmarkAgent (<a href="#ondewo.nlu.ExportBenchmarkAgentRequest">ExportBenchmarkAgentRequest</a>) returns (<a href="#google.longrunning.Operation">.google.longrunning.Operation)</a></pre>
+
+          Exports the specified train agent to a ZIP file after train-test split, returns the test TrainingPhrase list.
+        
           <h4 id="ondewo.nlu.Agents.ImportAgent" class="title-badge method">ImportAgent</h4>
 
           <pre>rpc ImportAgent (<a href="#ondewo.nlu.ImportAgentRequest">ImportAgentRequest</a>) returns (<a href="#google.longrunning.Operation">.google.longrunning.Operation)</a></pre>
@@ -2519,6 +2598,16 @@ Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
                 <td>ExportAgent</td>
                 <td>POST</td>
                 <td>/v2/{parent=projects/*/agent}:export</td>
+                <td>*</td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>ExportBenchmarkAgent</td>
+                <td>POST</td>
+                <td>/v2/{parent=projects/*/agent}:export_benchmark</td>
                 <td>*</td>
               </tr>
               
@@ -3063,6 +3152,127 @@ curl \
 
         
       
+        <h3 id="ondewo.nlu.ExportBenchmarkAgentRequest" class="title-badge message">ExportBenchmarkAgentRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>parent</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Agent related info
+Required. The project that the agent to export is associated with.
+Format: `projects/<Project ID>`. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>compression_level</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Optional. The compression level of the zip file created.
+Valid range 1-9; the grpc-default value 0 will be mapped to 1,
+other values cause an error in the request validation handler. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>test_size</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p>Train-test split related parameters, for further info,
+check https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html
+default values come from API definition above
+Optional: bigger than zero </p></td>
+                </tr>
+              
+                <tr>
+                  <td>train_size</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p>Optional: bigger than zero </p></td>
+                </tr>
+              
+                <tr>
+                  <td>random_state</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Optional: random seed </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.nlu.ExportBenchmarkAgentResponse" class="title-badge message">ExportBenchmarkAgentResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>agent_content</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>training_phrases</td>
+                  <td><a href="#ondewo.nlu.ExportBenchmarkAgentResponse.TrainingPhrasesEntry">ExportBenchmarkAgentResponse.TrainingPhrasesEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>Key is the language code, value is the corresponding ListTrainingPhrasesResponse </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.nlu.ExportBenchmarkAgentResponse.TrainingPhrasesEntry" class="title-badge message">ExportBenchmarkAgentResponse.TrainingPhrasesEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#ondewo.nlu.ListTrainingPhrasesResponse">ListTrainingPhrasesResponse</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="ondewo.nlu.ExportResourcesRequest" class="title-badge message">ExportResourcesRequest</h3>
         <p></p>
 
@@ -3175,7 +3385,7 @@ curl \
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Required. The project that the agent to fetch is associated with.
-Format: `projects/<Project ID>`. </p></td>
+Format: `projects/<Project ID>/agents`. </p></td>
                 </tr>
               
                 <tr>
@@ -4442,6 +4652,12 @@ Format: `projects/<Project ID>`. </p></td>
 
           
         
+          <h4 id="ondewo.nlu.AiServices.ExtractEntitiesFuzzy" class="title-badge method">ExtractEntitiesFuzzy</h4>
+
+          <pre>rpc ExtractEntitiesFuzzy (<a href="#ondewo.nlu.ExtractEntitiesFuzzyRequest">ExtractEntitiesFuzzyRequest</a>) returns (<a href="#ondewo.nlu.ExtractEntitiesResponse">ExtractEntitiesResponse)</a></pre>
+
+          Processes a natural language query and returns detected entities
+        
 
         
           
@@ -4776,6 +4992,107 @@ Format: `projects/<Project ID>`. </p></td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.nlu.EntityTypeFuzzyNerConfig" class="title-badge message">EntityTypeFuzzyNerConfig</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>entity_type</td>
+                  <td><a href="#ondewo.nlu.EntityType">EntityType</a></td>
+                  <td></td>
+                  <td><p>The Entity Type </p></td>
+                </tr>
+              
+                <tr>
+                  <td>minimal_score</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p>Optional. Overrides the minimal score in ExtractEntitiesFuzzyRequest. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>entity_values</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Optional. If defined, only entity value from this list are considered. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>algorithm</td>
+                  <td><a href="#ondewo.nlu.EntityTypeFuzzyNerConfig.FuzzyNerAlgorithm">EntityTypeFuzzyNerConfig.FuzzyNerAlgorithm</a></td>
+                  <td></td>
+                  <td><p>Optional. Specify the Fuzzy Ner algorithm
+
+Should not use allow_overlaps here, since its default value is False
+bool allow_overlaps = 5; </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.nlu.ExtractEntitiesFuzzyRequest" class="title-badge message">ExtractEntitiesFuzzyRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>parent</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the parent of the request
+Format: `projects/<Project ID>`. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>text</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The text to be analyzed </p></td>
+                </tr>
+              
+                <tr>
+                  <td>potential_entities</td>
+                  <td><a href="#ondewo.nlu.EntityTypeFuzzyNerConfig">EntityTypeFuzzyNerConfig</a></td>
+                  <td>repeated</td>
+                  <td><p>Potential entities to be extracted from the text with entity-specific configs </p></td>
+                </tr>
+              
+                <tr>
+                  <td>minimal_score</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p>Minimal similarity score to consider entity as "matched" </p></td>
+                </tr>
+              
+                <tr>
+                  <td>allow_overlaps</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Optional. Whether or not entities are allowed to overlap. </p></td>
                 </tr>
               
             </tbody>
@@ -5572,6 +5889,32 @@ as duplicate. Meaningful values of similarity_threshold are between 0.95 and 1.0
       
       
 
+      
+      <div id="ondewo/nlu/aiservices.proto-enums" class="object-category">Enums</div>
+      
+        <h3 id="ondewo.nlu.EntityTypeFuzzyNerConfig.FuzzyNerAlgorithm" class="title-badge enum">EntityTypeFuzzyNerConfig.FuzzyNerAlgorithm</h3>
+        <p>Enum of fuzzy ner algorithms</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>PREFILTER_LEVENSHTEIN</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LOCAL_MAXIMUM</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
       
 
       
@@ -8858,6 +9201,20 @@ where <CURRENT_INDEX> and <PAGE_SIZE> are of type int </p></td>
                   <td><p>Indicates whether the intent is active or not </p></td>
                 </tr>
               
+                <tr>
+                  <td>start_date</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>Optional. Provides information that can be used in custom scripts </p></td>
+                </tr>
+              
+                <tr>
+                  <td>end_date</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>Optional. Provides information that can be used in custom scripts </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -10705,6 +11062,24 @@ filling prompt is forwarded to the webhook.</p></td>
                 <td><p>represent the user defined (custom) intents</p></td>
               </tr>
             
+              <tr>
+                <td>DATE_EXPIRED_INTENTS</td>
+                <td>3</td>
+                <td><p>represents the intents that had its end_date elapsed</p></td>
+              </tr>
+            
+              <tr>
+                <td>DATE_ACTIVE_INTENTS</td>
+                <td>4</td>
+                <td><p>represents the intents that its start_date began but had not yet expired</p></td>
+              </tr>
+            
+              <tr>
+                <td>DATE_UPCOMING_INTENTS</td>
+                <td>5</td>
+                <td><p>represent the intents that are still expecting its start_date to begin</p></td>
+              </tr>
+            
           </tbody>
         </table>
       
@@ -10743,6 +11118,18 @@ filling prompt is forwarded to the webhook.</p></td>
               <tr>
                 <td>SORT_INTENT_BY_USERSAYS_COUNT</td>
                 <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SORT_INTENT_BY_START_DATE</td>
+                <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SORT_INTENT_BY_END_DATE</td>
+                <td>6</td>
                 <td><p></p></td>
               </tr>
             
@@ -10989,6 +11376,12 @@ filling prompt is forwarded to the webhook.</p></td>
                 <td>TRAIN_AGENT</td>
                 <td>7</td>
                 <td><p>train agent</p></td>
+              </tr>
+            
+              <tr>
+                <td>EXPORT_BENCHMARK_AGENT</td>
+                <td>8</td>
+                <td><p>export benchmark agent to a zip file</p></td>
               </tr>
             
           </tbody>
@@ -12281,12 +12674,24 @@ as a side effect: also update training data in ondewo-cai
             <tbody>
               
                 <tr>
-                  <td>session_path</td>
+                  <td>parent</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Creates a session that collects all the conversation interactions between the machine and a user
-The unique identifier of a Session in an Agent
-Format: `projects/<PROJECT_ID>/agent/sessions/<SESSION_UUID>`. </p></td>
+The unique identifier of an Agent
+Format: `projects/<PROJECT_ID>/agent`.
+
+Required. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>session_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The unique UUID of a Session
+Format: UUID Version 4, e.g. 2f59fad2-06bc-4730-9920-d3148f28f357
+
+Optional. If not provided, it will be auto-generated </p></td>
                 </tr>
               
             </tbody>
@@ -16400,13 +16805,37 @@ internally with the specified event as input. </p></td>
         
           <h4 id="ondewo.qa.QA.RunScraper" class="title-badge method">RunScraper</h4>
 
-          <pre>rpc RunScraper (<a href="#google.protobuf.Empty">.google.protobuf.Empty</a>) returns (<a href="#ondewo.qa.RunScraperResponse">RunScraperResponse)</a></pre>
+          <pre>rpc RunScraper (<a href="#ondewo.qa.RunScraperRequest">RunScraperRequest</a>) returns (<a href="#ondewo.qa.RunScraperResponse">RunScraperResponse)</a></pre>
+
+          
+        
+          <h4 id="ondewo.qa.QA.UpdateDatabase" class="title-badge method">UpdateDatabase</h4>
+
+          <pre>rpc UpdateDatabase (<a href="#ondewo.qa.UpdateDatabaseRequest">UpdateDatabaseRequest</a>) returns (<a href="#ondewo.qa.UpdateDatabaseResponse">UpdateDatabaseResponse)</a></pre>
 
           
         
           <h4 id="ondewo.qa.QA.RunTraining" class="title-badge method">RunTraining</h4>
 
           <pre>rpc RunTraining (<a href="#google.protobuf.Empty">.google.protobuf.Empty</a>) returns (<a href="#ondewo.qa.RunTrainingResponse">RunTrainingResponse)</a></pre>
+
+          
+        
+          <h4 id="ondewo.qa.QA.GetServerState" class="title-badge method">GetServerState</h4>
+
+          <pre>rpc GetServerState (<a href="#google.protobuf.Empty">.google.protobuf.Empty</a>) returns (<a href="#ondewo.qa.GetServerStateResponse">GetServerStateResponse)</a></pre>
+
+          
+        
+          <h4 id="ondewo.qa.QA.ListProjectIds" class="title-badge method">ListProjectIds</h4>
+
+          <pre>rpc ListProjectIds (<a href="#google.protobuf.Empty">.google.protobuf.Empty</a>) returns (<a href="#ondewo.qa.ListProjectIdsResponse">ListProjectIdsResponse)</a></pre>
+
+          
+        
+          <h4 id="ondewo.qa.QA.GetProjectConfig" class="title-badge method">GetProjectConfig</h4>
+
+          <pre>rpc GetProjectConfig (<a href="#ondewo.qa.GetProjectConfigRequest">GetProjectConfigRequest</a>) returns (<a href="#ondewo.qa.GetProjectConfigResponse">GetProjectConfigResponse)</a></pre>
 
           
         
@@ -16449,9 +16878,49 @@ internally with the specified event as input. </p></td>
               
               
               <tr>
+                <td>UpdateDatabase</td>
+                <td>GET</td>
+                <td>/qa:UpdateDatabase</td>
+                <td></td>
+              </tr>
+              
+            
+              
+              
+              <tr>
                 <td>RunTraining</td>
                 <td>GET</td>
                 <td>/qa:RunTraining</td>
+                <td></td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>GetServerState</td>
+                <td>GET</td>
+                <td>/qa:GetServerState</td>
+                <td></td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>ListProjectIds</td>
+                <td>GET</td>
+                <td>/qa:ListProjectIds</td>
+                <td></td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>GetProjectConfig</td>
+                <td>GET</td>
+                <td>/qa:ListProjectConfig</td>
                 <td></td>
               </tr>
               
@@ -16481,14 +16950,19 @@ internally with the specified event as input. </p></td>
                   <td>session_id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Required. The name of the QA session. </p></td>
+                  <td><p>Required. The name of the session this query is sent to. Format:
+`projects/<Project ID>/agent/sessions/<Session ID>`. It's up to the API
+caller to choose an appropriate session ID. It can be a random number or
+some type of user identifier (preferably hashed). The length of the session
+ID must not exceed 36 bytes. </p></td>
                 </tr>
               
                 <tr>
                   <td>text</td>
                   <td><a href="#ondewo.nlu.TextInput">ondewo.nlu.TextInput</a></td>
                   <td></td>
-                  <td><p>Required. The context of the request. A string, in the form of a sentence. </p></td>
+                  <td><p>Required. The context of the request. A message containing a string (in the form of a sentence) and a
+language code. </p></td>
                 </tr>
               
                 <tr>
@@ -16527,10 +17001,10 @@ internally with the specified event as input. </p></td>
                 </tr>
               
                 <tr>
-                  <td>filters</td>
-                  <td><a href="#ondewo.qa.MetadataFilters">MetadataFilters</a></td>
-                  <td>repeated</td>
-                  <td><p>Optional. Filters applied to the metadata, to restrict the retrieved documents. </p></td>
+                  <td>url_filter</td>
+                  <td><a href="#ondewo.qa.UrlFilter">UrlFilter</a></td>
+                  <td></td>
+                  <td><p>Optional. Filters applied to the urls, to restrict the retrieved documents. </p></td>
                 </tr>
               
             </tbody>
@@ -16564,7 +17038,7 @@ internally with the specified event as input. </p></td>
 
         
       
-        <h3 id="ondewo.qa.MetadataFilters" class="title-badge message">MetadataFilters</h3>
+        <h3 id="ondewo.qa.GetProjectConfigRequest" class="title-badge message">GetProjectConfigRequest</h3>
         <p></p>
 
         
@@ -16575,38 +17049,106 @@ internally with the specified event as input. </p></td>
             <tbody>
               
                 <tr>
-                  <td>metadata_field</td>
+                  <td>project_id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Required. Name of the meta data field on which to apply filters on. </p></td>
+                  <td><p> </p></td>
                 </tr>
               
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.qa.GetProjectConfigResponse" class="title-badge message">GetProjectConfigResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
                 <tr>
-                  <td>filters_include</td>
+                  <td>config_serialized</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.qa.GetServerStateResponse" class="title-badge message">GetServerStateResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>server_is_ready</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether or not the server is ready to accept requests </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.qa.ListProjectIdsResponse" class="title-badge message">ListProjectIdsResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>project_ids</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>Optional. Filters to restrict the possible values of the meta data. </p></td>
+                  <td><p> </p></td>
                 </tr>
               
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.qa.RunScraperRequest" class="title-badge message">RunScraperRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
                 <tr>
-                  <td>filters_exclude</td>
+                  <td>project_ids</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>Optional. List of forbidden values of the meta data. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>regex_filter_include</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Optional. Regular expression which must be matched by the meta data. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>regex_filter_exclude</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Optional. Regular expression which must not be matched by the meta data. </p></td>
+                  <td><p>List of project_ids </p></td>
                 </tr>
               
             </tbody>
@@ -16617,6 +17159,30 @@ internally with the specified event as input. </p></td>
         
       
         <h3 id="ondewo.qa.RunScraperResponse" class="title-badge message">RunScraperResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>scraper_containers</td>
+                  <td><a href="#ondewo.qa.RunScraperResponse.ScraperContainer">RunScraperResponse.ScraperContainer</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.qa.RunScraperResponse.ScraperContainer" class="title-badge message">RunScraperResponse.ScraperContainer</h3>
         <p></p>
 
         
@@ -16669,6 +17235,92 @@ internally with the specified event as input. </p></td>
                   <td><a href="#float">float</a></td>
                   <td></td>
                   <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.qa.UpdateDatabaseRequest" class="title-badge message">UpdateDatabaseRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>project_ids</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>List of project_ids of which to update the database </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.qa.UpdateDatabaseResponse" class="title-badge message">UpdateDatabaseResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_messages</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.qa.UrlFilter" class="title-badge message">UrlFilter</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>allowed_values</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Optional. List of values that the metadata_field 'url' is allowed to take. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>regex_filter_include</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional. Regular expression which must be matched by the meta data. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>regex_filter_exclude</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional. Regular expression which must not be matched by the meta data. </p></td>
                 </tr>
               
             </tbody>
