@@ -4990,6 +4990,7 @@ All fields below are  optional. Multiple fields specified at the same time are c
 | language_code | [string](#string) |  | The language code |
 | detected_intents | [DetectedIntent](#ondewo.nlu.DetectedIntent) | repeated | Unique detected intents ordered by descending confidence |
 | contexts | [Context](#ondewo.nlu.Context) | repeated | The contexts which were active at the beginning of this step |
+| contexts_out | [Context](#ondewo.nlu.Context) | repeated | The output contexts of this step |
 
 
 
