@@ -11,6 +11,7 @@
     - [AgentWithOwner](#ondewo.nlu.AgentWithOwner)
     - [BuildCacheRequest](#ondewo.nlu.BuildCacheRequest)
     - [CreateAgentRequest](#ondewo.nlu.CreateAgentRequest)
+    - [CustomPlatformInfo](#ondewo.nlu.CustomPlatformInfo)
     - [DeleteAgentRequest](#ondewo.nlu.DeleteAgentRequest)
     - [DeleteResourcesRequest](#ondewo.nlu.DeleteResourcesRequest)
     - [ExportAgentRequest](#ondewo.nlu.ExportAgentRequest)
@@ -26,6 +27,7 @@
     - [GetModelStatusesRequest](#ondewo.nlu.GetModelStatusesRequest)
     - [GetModelStatusesResponse](#ondewo.nlu.GetModelStatusesResponse)
     - [GetPlatformInfoResponse](#ondewo.nlu.GetPlatformInfoResponse)
+    - [GetPlatformMappingRequest](#ondewo.nlu.GetPlatformMappingRequest)
     - [ImportAgentRequest](#ondewo.nlu.ImportAgentRequest)
     - [ListAgentsOfUserResponse](#ondewo.nlu.ListAgentsOfUserResponse)
     - [ListAgentsRequest](#ondewo.nlu.ListAgentsRequest)
@@ -37,6 +39,7 @@
     - [ModelStatus](#ondewo.nlu.ModelStatus)
     - [OptimizeRankingMatchRequest](#ondewo.nlu.OptimizeRankingMatchRequest)
     - [OptimizeRankingMatchResponse](#ondewo.nlu.OptimizeRankingMatchResponse)
+    - [PlatformMapping](#ondewo.nlu.PlatformMapping)
     - [RankingMatchOptimizationConfig](#ondewo.nlu.RankingMatchOptimizationConfig)
     - [RemoveUserFromProjectRequest](#ondewo.nlu.RemoveUserFromProjectRequest)
     - [RestoreAgentRequest](#ondewo.nlu.RestoreAgentRequest)
@@ -520,6 +523,23 @@ The request message for [Agents.TrainAgentBuildCache][google.cloud.dialogflow.v2
 
 
 
+<a name="ondewo.nlu.CustomPlatformInfo"></a>
+
+### CustomPlatformInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| platform | [Intent.Message.Platform](#ondewo.nlu.Intent.Message.Platform) |  | Required. ID of the Platform. Custom Intent.Message.Platform placeholder. Note: it will not work with non-placeholders values |
+| display_name | [string](#string) |  | Required. Name to be displayed. |
+| position | [uint32](#uint32) |  | Optional. Sorting position of the GetPlatformMappingRequest. |
+
+
+
+
+
+
 <a name="ondewo.nlu.DeleteAgentRequest"></a>
 
 ### DeleteAgentRequest
@@ -737,7 +757,7 @@ The request message for [Agents.GetAgent][google.cloud.dialogflow.v2.Agents.GetA
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: `projects/<Project ID>`. |
+| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: `projects/<Project ID>/agent`. |
 | cache_version | [int32](#int32) |  |  |
 | language_code | [string](#string) |  |  |
 | model_name | [string](#string) |  |  |
@@ -755,7 +775,7 @@ The request message for [Agents.GetAgent][google.cloud.dialogflow.v2.Agents.GetA
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| model_statuses | [ModelStatus](#ondewo.nlu.ModelStatus) | repeated | Required. The project that the agent to fetch is associated with. Format: `projects/<Project ID>`. |
+| model_statuses | [ModelStatus](#ondewo.nlu.ModelStatus) | repeated |  |
 
 
 
@@ -772,6 +792,21 @@ The request message for [Agents.GetAgent][google.cloud.dialogflow.v2.Agents.GetA
 | ----- | ---- | ----- | ----------- |
 | version | [string](#string) |  |  |
 | commit_hash | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetPlatformMappingRequest"></a>
+
+### GetPlatformMappingRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The project that the agent is associated with. Format: `projects/<Project ID>/agent`. |
 
 
 
@@ -919,7 +954,7 @@ Project permissions
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| cache_version | [int32](#int32) |  | Required. The project that the agent to fetch is associated with. Format: `projects/<Project ID>`. |
+| cache_version | [int32](#int32) |  |  |
 | language_code | [string](#string) |  |  |
 | model_name | [string](#string) |  |  |
 | status_set_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
@@ -959,6 +994,22 @@ Project permissions
 | ----- | ---- | ----- | ----------- |
 | optimization_info | [google.protobuf.Struct](#google.protobuf.Struct) |  |  |
 | optimized_ondewo_config | [google.protobuf.Struct](#google.protobuf.Struct) |  |  |
+
+
+
+
+
+
+<a name="ondewo.nlu.PlatformMapping"></a>
+
+### PlatformMapping
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The project that the agent is associated with. Format: `projects/<Project ID>/agent`. |
+| platform_info | [CustomPlatformInfo](#ondewo.nlu.CustomPlatformInfo) | repeated | Required. If not set, it will set it empty. |
 
 
 
@@ -1304,6 +1355,8 @@ Operation <response: [google.protobuf.Empty][google.protobuf.Empty], metadata: [
 | DeleteResources | [DeleteResourcesRequest](#ondewo.nlu.DeleteResourcesRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) |  |
 | ExportResources | [ExportResourcesRequest](#ondewo.nlu.ExportResourcesRequest) | [ExportResourcesResponse](#ondewo.nlu.ExportResourcesResponse) |  |
 | GetModelStatuses | [GetModelStatusesRequest](#ondewo.nlu.GetModelStatusesRequest) | [GetModelStatusesResponse](#ondewo.nlu.GetModelStatusesResponse) | Get statuses of models related to project |
+| GetPlatformMapping | [GetPlatformMappingRequest](#ondewo.nlu.GetPlatformMappingRequest) | [PlatformMapping](#ondewo.nlu.PlatformMapping) | Get all set platform name mappings for an Agent |
+| SetPlatformMapping | [PlatformMapping](#ondewo.nlu.PlatformMapping) | [PlatformMapping](#ondewo.nlu.PlatformMapping) | Set platform name mappings for an Agent |
 
  <!-- end services -->
 
@@ -3909,6 +3962,26 @@ Represents different platforms that a rich message can be intended for.
 | LINE | 6 | Line. |
 | VIBER | 7 | Viber. |
 | ACTIONS_ON_GOOGLE | 8 | Actions on Google. When using Actions on Google, you can choose one of the specific Intent.Message types that mention support for Actions on Google, or you can use the advanced Intent.Message.payload field. The payload field provides access to AoG features not available in the specific message types. If using the Intent.Message.payload field, it should have a structure similar to the JSON message shown here. For more information, see [Actions on Google Webhook Format](https://developers.google.com/actions/dialogflow/webhook) <pre>{ "expectUserResponse": true, "isSsml": false, "noInputPrompts": [], "richResponse": { "items": [ { "simpleResponse": { "displayText": "hi", "textToSpeech": "hello" } } ], "suggestions": [ { "title": "Say this" }, { "title": "or this" } ] }, "systemIntent": { "data": { "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec", "listSelect": { "items": [ { "optionInfo": { "key": "key1", "synonyms": [ "key one" ] }, "title": "must not be empty, but unique" }, { "optionInfo": { "key": "key2", "synonyms": [ "key two" ] }, "title": "must not be empty, but unique" } ] } }, "intent": "actions.intent.OPTION" } }</pre> |
+| PLACEHOLDER_1 | 9 |  |
+| PLACEHOLDER_2 | 10 |  |
+| PLACEHOLDER_3 | 11 |  |
+| PLACEHOLDER_4 | 12 |  |
+| PLACEHOLDER_5 | 13 |  |
+| PLACEHOLDER_6 | 14 |  |
+| PLACEHOLDER_7 | 15 |  |
+| PLACEHOLDER_8 | 16 |  |
+| PLACEHOLDER_9 | 17 |  |
+| PLACEHOLDER_10 | 18 |  |
+| PLACEHOLDER_11 | 19 |  |
+| PLACEHOLDER_12 | 20 |  |
+| PLACEHOLDER_13 | 21 |  |
+| PLACEHOLDER_14 | 22 |  |
+| PLACEHOLDER_15 | 23 |  |
+| PLACEHOLDER_16 | 24 |  |
+| PLACEHOLDER_17 | 25 |  |
+| PLACEHOLDER_18 | 26 |  |
+| PLACEHOLDER_19 | 27 |  |
+| PLACEHOLDER_20 | 28 |  |
 
 
 
@@ -4990,7 +5063,6 @@ All fields below are  optional. Multiple fields specified at the same time are c
 | language_code | [string](#string) |  | The language code |
 | detected_intents | [DetectedIntent](#ondewo.nlu.DetectedIntent) | repeated | Unique detected intents ordered by descending confidence |
 | contexts | [Context](#ondewo.nlu.Context) | repeated | The contexts which were active at the beginning of this step |
-| contexts_out | [Context](#ondewo.nlu.Context) | repeated | The output contexts of this step |
 
 
 
