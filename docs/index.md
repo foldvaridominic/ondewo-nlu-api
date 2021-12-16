@@ -3298,6 +3298,7 @@ Corresponds to the `Response` field in the Dialogflow console.
 | video | [Intent.Message.Video](#ondewo.nlu.Intent.Message.Video) |  | The Video response |
 | audio | [Intent.Message.Audio](#ondewo.nlu.Intent.Message.Audio) |  | The Audio response |
 | platform | [Intent.Message.Platform](#ondewo.nlu.Intent.Message.Platform) |  | Optional. The platform that this message is intended for. |
+| is_prompt | [bool](#bool) |  | Read-only. States if a returned message is a prompt or not. |
 
 
 
