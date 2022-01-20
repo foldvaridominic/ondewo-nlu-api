@@ -818,6 +818,10 @@
                       
                         <li><a href="#ondewo.nlu.Intents.BatchDeleteIntents" class="title-badge method">BatchDeleteIntents</a></li>
                       
+                        <li><a href="#ondewo.nlu.Intents.TagIntent" class="title-badge method">TagIntent</a></li>
+                      
+                        <li><a href="#ondewo.nlu.Intents.DeleteIntentTag" class="title-badge method">DeleteIntentTag</a></li>
+                      
                         <li><a href="#ondewo.nlu.Intents.BatchCreateTrainingPhrases" class="title-badge method">BatchCreateTrainingPhrases</a></li>
                       
                         <li><a href="#ondewo.nlu.Intents.BatchGetTrainingPhrases" class="title-badge method">BatchGetTrainingPhrases</a></li>
@@ -1104,6 +1108,10 @@
                     
                       <li>
                         <a href="#ondewo.nlu.IntentSorting" class="title-badge message">IntentSorting</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.nlu.IntentTagMessage" class="title-badge message">IntentTagMessage</a>
                       </li>
                     
                       <li>
@@ -8066,6 +8074,18 @@ Operation <response: [BatchUpdateIntentsResponse][google.cloud.dialogflow.v2.Bat
 
 Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
         
+          <h4 id="ondewo.nlu.Intents.TagIntent" class="title-badge method">TagIntent</h4>
+
+          <pre>rpc TagIntent (<a href="#ondewo.nlu.IntentTagMessage">IntentTagMessage</a>) returns (<a href="#ondewo.nlu.IntentTagMessage">IntentTagMessage)</a></pre>
+
+          
+        
+          <h4 id="ondewo.nlu.Intents.DeleteIntentTag" class="title-badge method">DeleteIntentTag</h4>
+
+          <pre>rpc DeleteIntentTag (<a href="#ondewo.nlu.IntentTagMessage">IntentTagMessage</a>) returns (<a href="#ondewo.nlu.IntentTagMessage">IntentTagMessage)</a></pre>
+
+          
+        
           <h4 id="ondewo.nlu.Intents.BatchCreateTrainingPhrases" class="title-badge method">BatchCreateTrainingPhrases</h4>
 
           <pre>rpc BatchCreateTrainingPhrases (<a href="#ondewo.nlu.BatchCreateTrainingPhrasesRequest">BatchCreateTrainingPhrasesRequest</a>) returns (<a href="#ondewo.nlu.BatchTrainingPhrasesStatusResponse">BatchTrainingPhrasesStatusResponse)</a></pre>
@@ -8238,6 +8258,26 @@ Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
                 <td>BatchDeleteIntents</td>
                 <td>POST</td>
                 <td>/v2/{parent=projects/*/agent}/intents:batchDelete</td>
+                <td>*</td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>TagIntent</td>
+                <td>POST</td>
+                <td>/v2/{parent=projects/*/agent}/intents:tagIntent</td>
+                <td>*</td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>DeleteIntentTag</td>
+                <td>POST</td>
+                <td>/v2/{parent=projects/*/agent}/intents:deleteIntentTag</td>
                 <td>*</td>
               </tr>
               
@@ -9449,6 +9489,13 @@ where <CURRENT_INDEX> and <PAGE_SIZE> are of type int </p></td>
                   <td><p>Optional. Provides information that can be used in custom scripts </p></td>
                 </tr>
               
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Optional. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -10651,6 +10698,38 @@ annotation. </p></td>
 
         
       
+        <h3 id="ondewo.nlu.IntentTagMessage" class="title-badge message">IntentTagMessage</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>intent_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The path of the intent.
+Format: `projects/<Project ID>/agent/intents/<Intent ID>`. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="ondewo.nlu.ListIntentsRequest" class="title-badge message">ListIntentsRequest</h3>
         <p>The request message for [Intents.ListIntents][google.cloud.dialogflow.v2.Intents.ListIntents].</p>
 
@@ -10708,6 +10787,13 @@ where <CURRENT_INDEX> and <PAGE_SIZE> are of type int </p></td>
                   <td><a href="#ondewo.nlu.IntentSorting">IntentSorting</a></td>
                   <td></td>
                   <td><p>Optional. Defines the sorting of the list. Default, no sorting. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>filter_by_tags</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Optional. Applies a filter to the list by tags. Default, no filter. </p></td>
                 </tr>
               
             </tbody>

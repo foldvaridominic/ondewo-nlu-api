@@ -212,6 +212,7 @@
     - [Intent.TrainingPhrase.Entity](#ondewo.nlu.Intent.TrainingPhrase.Entity)
     - [IntentBatch](#ondewo.nlu.IntentBatch)
     - [IntentSorting](#ondewo.nlu.IntentSorting)
+    - [IntentTagMessage](#ondewo.nlu.IntentTagMessage)
     - [ListIntentsRequest](#ondewo.nlu.ListIntentsRequest)
     - [ListIntentsResponse](#ondewo.nlu.ListIntentsResponse)
     - [ListParametersRequest](#ondewo.nlu.ListParametersRequest)
@@ -3287,6 +3288,7 @@ action is an extraction of a user command or sentence semantics.
 | status | [Intent.IntentStatus](#ondewo.nlu.Intent.IntentStatus) |  | Indicates whether the intent is active or not |
 | start_date | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Optional. Provides information that can be used in custom scripts |
 | end_date | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Optional. Provides information that can be used in custom scripts |
+| tags | [string](#string) | repeated | Optional. |
 
 
 
@@ -3800,6 +3802,22 @@ This message is a wrapper around a collection of intents.
 
 
 
+<a name="ondewo.nlu.IntentTagMessage"></a>
+
+### IntentTagMessage
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| intent_name | [string](#string) |  | The path of the intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`. |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
 <a name="ondewo.nlu.ListIntentsRequest"></a>
 
 ### ListIntentsRequest
@@ -3814,6 +3832,7 @@ The request message for [Intents.ListIntents][google.cloud.dialogflow.v2.Intents
 | page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. Format: `current_index-<CURRENT_INDEX>--page_size-<PAGE_SIZE>` where <CURRENT_INDEX> and <PAGE_SIZE> are of type int |
 | filter_by_category | [IntentCategory](#ondewo.nlu.IntentCategory) |  | Optional. Applies a filter to the list. Default, no filter. |
 | sort_by_field | [IntentSorting](#ondewo.nlu.IntentSorting) |  | Optional. Defines the sorting of the list. Default, no sorting. |
+| filter_by_tags | [string](#string) | repeated | Optional. Applies a filter to the list by tags. Default, no filter. |
 
 
 
@@ -4149,6 +4168,8 @@ Operation <response: [BatchUpdateIntentsResponse][google.cloud.dialogflow.v2.Bat
 | BatchDeleteIntents | [BatchDeleteIntentsRequest](#ondewo.nlu.BatchDeleteIntentsRequest) | [.google.longrunning.Operation](#google.longrunning.Operation) | Deletes intents in the specified agent.
 
 Operation <response: [google.protobuf.Empty][google.protobuf.Empty]> |
+| TagIntent | [IntentTagMessage](#ondewo.nlu.IntentTagMessage) | [IntentTagMessage](#ondewo.nlu.IntentTagMessage) |  |
+| DeleteIntentTag | [IntentTagMessage](#ondewo.nlu.IntentTagMessage) | [IntentTagMessage](#ondewo.nlu.IntentTagMessage) |  |
 | BatchCreateTrainingPhrases | [BatchCreateTrainingPhrasesRequest](#ondewo.nlu.BatchCreateTrainingPhrasesRequest) | [BatchTrainingPhrasesStatusResponse](#ondewo.nlu.BatchTrainingPhrasesStatusResponse) | Creates batch of training phrases |
 | BatchGetTrainingPhrases | [BatchGetTrainingPhrasesRequest](#ondewo.nlu.BatchGetTrainingPhrasesRequest) | [BatchTrainingPhrasesStatusResponse](#ondewo.nlu.BatchTrainingPhrasesStatusResponse) | Retrieve a training phrases batch of the specified names. |
 | BatchUpdateTrainingPhrases | [BatchUpdateTrainingPhrasesRequest](#ondewo.nlu.BatchUpdateTrainingPhrasesRequest) | [BatchTrainingPhrasesStatusResponse](#ondewo.nlu.BatchTrainingPhrasesStatusResponse) | Updates batch of training phrases |
