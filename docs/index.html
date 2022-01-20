@@ -723,6 +723,10 @@
                       </li>
                     
                       <li>
+                        <a href="#ondewo.nlu.EntityValueSorting" class="title-badge message">EntityValueSorting</a>
+                      </li>
+                    
+                      <li>
                         <a href="#ondewo.nlu.GetEntityTypeRequest" class="title-badge message">GetEntityTypeRequest</a>
                       </li>
                     
@@ -774,6 +778,10 @@
                     
                       <li>
                         <a href="#ondewo.nlu.EntityTypeView" class="title-badge enum">EntityTypeView</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.nlu.EntityValueSorting.EntityValueSortingField" class="title-badge enum">EntityValueSorting.EntityValueSortingField</a>
                       </li>
                     
                   </ul>
@@ -7196,6 +7204,13 @@ languages](https://dialogflow.com/docs/reference/language) are supported.
 Note: languages must be enabled in the agent, before they can be used. </p></td>
                 </tr>
               
+                <tr>
+                  <td>entity_type_view</td>
+                  <td><a href="#ondewo.nlu.EntityTypeView">EntityTypeView</a></td>
+                  <td></td>
+                  <td><p>Optional. The resource view to apply to the returned Entity Type </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -7433,6 +7448,37 @@ must contain exactly one synonym equal to `value`. </p></td>
 
         
       
+        <h3 id="ondewo.nlu.EntityValueSorting" class="title-badge message">EntityValueSorting</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>sorting_field</td>
+                  <td><a href="#ondewo.nlu.EntityValueSorting.EntityValueSortingField">EntityValueSorting.EntityValueSortingField</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_mode</td>
+                  <td><a href="#ondewo.nlu.SortingMode">SortingMode</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="ondewo.nlu.GetEntityTypeRequest" class="title-badge message">GetEntityTypeRequest</h3>
         <p>The request message for [EntityTypes.GetEntityType][google.cloud.dialogflow.v2.EntityTypes.GetEntityType].</p>
 
@@ -7467,6 +7513,13 @@ Note: languages must be enabled in the agent, before they can be used. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>entity_type_view</td>
+                  <td><a href="#ondewo.nlu.EntityTypeView">EntityTypeView</a></td>
+                  <td></td>
+                  <td><p>Optional. The resource view to apply to the returned Entity Type </p></td>
                 </tr>
               
             </tbody>
@@ -7510,10 +7563,24 @@ messages for. If not specified, the agent's default language is used. </p></td>
                 </tr>
               
                 <tr>
-                  <td>entity_type_view</td>
-                  <td><a href="#ondewo.nlu.EntityTypeView">EntityTypeView</a></td>
+                  <td>sort_by_field</td>
+                  <td><a href="#ondewo.nlu.EntityValueSorting">EntityValueSorting</a></td>
                   <td></td>
-                  <td><p>Optional. The resource view to apply to the returned entity type. </p></td>
+                  <td><p>Optional. Defines the sorting of the list. Default, no sorting. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>search_by_pattern</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional. Defines a pattern to search for in the entity type "values" and "synonyms"
+Example:
+     Pattern: "dark"
+     Results:
+             [Entity Value]          [Entity Synonyms]
+             Red                     red, scarlett, dark red, ...
+             Blue                    blue, indico, dark blue, sky blue, ...
+             Dark                    obscure, black, opaque, ... </p></td>
                 </tr>
               
             </tbody>
@@ -7686,6 +7753,13 @@ Note: languages must be enabled in the agent, before they can be used. </p></td>
                   <td><a href="#google.protobuf.FieldMask">google.protobuf.FieldMask</a></td>
                   <td></td>
                   <td><p>Optional. The mask to control which fields get updated. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>entity_type_view</td>
+                  <td><a href="#ondewo.nlu.EntityTypeView">EntityTypeView</a></td>
+                  <td></td>
+                  <td><p>Optional. The resource view to apply to the returned Entity Type </p></td>
                 </tr>
               
             </tbody>
@@ -7885,6 +7959,41 @@ types (with or without aliases).</p></td>
                 <td>ENTITY_TYPE_VIEW_SHALLOW</td>
                 <td>3</td>
                 <td><p>No entity synonyms are returned, only entity values</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="ondewo.nlu.EntityValueSorting.EntityValueSortingField" class="title-badge enum">EntityValueSorting.EntityValueSortingField</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>NO_ENTITY_VALUE_SORTING</td>
+                <td>0</td>
+                <td><p>Default behaviour: Sorts by value</p></td>
+              </tr>
+            
+              <tr>
+                <td>SORT_ENTITY_VALUE_BY_DISPLAY_NAME</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SORT_ENTITY_VALUE_BY_VALUE</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SORT_ENTITY_VALUE_BY_SYNONYM_COUNT</td>
+                <td>3</td>
+                <td><p></p></td>
               </tr>
             
           </tbody>

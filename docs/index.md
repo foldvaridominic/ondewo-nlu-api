@@ -131,6 +131,7 @@
     - [EntityType.Entity](#ondewo.nlu.EntityType.Entity)
     - [EntityTypeBatch](#ondewo.nlu.EntityTypeBatch)
     - [EntityTypeSorting](#ondewo.nlu.EntityTypeSorting)
+    - [EntityValueSorting](#ondewo.nlu.EntityValueSorting)
     - [GetEntityTypeRequest](#ondewo.nlu.GetEntityTypeRequest)
     - [ListEntitiesRequest](#ondewo.nlu.ListEntitiesRequest)
     - [ListEntitiesResponse](#ondewo.nlu.ListEntitiesResponse)
@@ -144,6 +145,7 @@
     - [EntityTypeCategory](#ondewo.nlu.EntityTypeCategory)
     - [EntityTypeSorting.EntityTypeSortingField](#ondewo.nlu.EntityTypeSorting.EntityTypeSortingField)
     - [EntityTypeView](#ondewo.nlu.EntityTypeView)
+    - [EntityValueSorting.EntityValueSortingField](#ondewo.nlu.EntityValueSorting.EntityValueSortingField)
   
     - [EntityTypes](#ondewo.nlu.EntityTypes)
   
@@ -2357,6 +2359,7 @@ The request message for [EntityTypes.CreateEntityType][google.cloud.dialogflow.v
 | parent | [string](#string) |  | Required. The agent to create a entity type for. Format: `projects/<Project ID>/agent`. |
 | entity_type | [EntityType](#ondewo.nlu.EntityType) |  | Required. The entity type to create. |
 | language_code | [string](#string) |  | Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used. |
+| entity_type_view | [EntityTypeView](#ondewo.nlu.EntityTypeView) |  | Optional. The resource view to apply to the returned Entity Type |
 
 
 
@@ -2454,6 +2457,22 @@ This message is a wrapper around a collection of entity types.
 
 
 
+<a name="ondewo.nlu.EntityValueSorting"></a>
+
+### EntityValueSorting
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sorting_field | [EntityValueSorting.EntityValueSortingField](#ondewo.nlu.EntityValueSorting.EntityValueSortingField) |  |  |
+| sorting_mode | [SortingMode](#ondewo.nlu.SortingMode) |  |  |
+
+
+
+
+
+
 <a name="ondewo.nlu.GetEntityTypeRequest"></a>
 
 ### GetEntityTypeRequest
@@ -2465,6 +2484,7 @@ The request message for [EntityTypes.GetEntityType][google.cloud.dialogflow.v2.E
 | name | [string](#string) |  | Required. The name of the entity type. Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`. |
 | language_code | [string](#string) |  | Optional. The language to retrieve entity synonyms for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used. |
 | page_token | [string](#string) |  |  |
+| entity_type_view | [EntityTypeView](#ondewo.nlu.EntityTypeView) |  | Optional. The resource view to apply to the returned Entity Type |
 
 
 
@@ -2482,7 +2502,8 @@ The request message for [EntityTypes.GetEntityType][google.cloud.dialogflow.v2.E
 | entity_type_name | [string](#string) |  | The unique identifier of the entity type. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID> |
 | language_code | [string](#string) |  | Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. |
 | page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. |
-| entity_type_view | [EntityTypeView](#ondewo.nlu.EntityTypeView) |  | Optional. The resource view to apply to the returned entity type. |
+| sort_by_field | [EntityValueSorting](#ondewo.nlu.EntityValueSorting) |  | Optional. Defines the sorting of the list. Default, no sorting. |
+| search_by_pattern | [string](#string) |  | Optional. Defines a pattern to search for in the entity type "values" and "synonyms" Example: Pattern: "dark" Results: [Entity Value] [Entity Synonyms] Red red, scarlett, dark red, ... Blue blue, indico, dark blue, sky blue, ... Dark obscure, black, opaque, ... |
 
 
 
@@ -2552,6 +2573,7 @@ The request message for [EntityTypes.UpdateEntityType][google.cloud.dialogflow.v
 | entity_type | [EntityType](#ondewo.nlu.EntityType) |  | Required. The entity type to update. Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`. |
 | language_code | [string](#string) |  | Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used. |
 | update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields get updated. |
+| entity_type_view | [EntityTypeView](#ondewo.nlu.EntityTypeView) |  | Optional. The resource view to apply to the returned Entity Type |
 
 
 
@@ -2641,6 +2663,20 @@ does not return all values and synonyms besides the full view that is set by def
 | ENTITY_TYPE_VIEW_FULL | 1 | All fields are populated. |
 | ENTITY_TYPE_VIEW_PARTIAL | 2 | The amount of entity values and synonyms is limited |
 | ENTITY_TYPE_VIEW_SHALLOW | 3 | No entity synonyms are returned, only entity values |
+
+
+
+<a name="ondewo.nlu.EntityValueSorting.EntityValueSortingField"></a>
+
+### EntityValueSorting.EntityValueSortingField
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| NO_ENTITY_VALUE_SORTING | 0 | Default behaviour: Sorts by value |
+| SORT_ENTITY_VALUE_BY_DISPLAY_NAME | 1 |  |
+| SORT_ENTITY_VALUE_BY_VALUE | 2 |  |
+| SORT_ENTITY_VALUE_BY_SYNONYM_COUNT | 3 |  |
 
 
  <!-- end enums -->
