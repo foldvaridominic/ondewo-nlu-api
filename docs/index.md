@@ -4168,8 +4168,8 @@ Operation <response: [BatchUpdateIntentsResponse][google.cloud.dialogflow.v2.Bat
 | BatchDeleteIntents | [BatchDeleteIntentsRequest](#ondewo.nlu.BatchDeleteIntentsRequest) | [.google.longrunning.Operation](#google.longrunning.Operation) | Deletes intents in the specified agent.
 
 Operation <response: [google.protobuf.Empty][google.protobuf.Empty]> |
-| TagIntent | [IntentTagMessage](#ondewo.nlu.IntentTagMessage) | [IntentTagMessage](#ondewo.nlu.IntentTagMessage) |  |
-| DeleteIntentTag | [IntentTagMessage](#ondewo.nlu.IntentTagMessage) | [IntentTagMessage](#ondewo.nlu.IntentTagMessage) |  |
+| TagIntent | [IntentTagMessage](#ondewo.nlu.IntentTagMessage) | [.google.protobuf.Empty](#google.protobuf.Empty) |  |
+| DeleteIntentTag | [IntentTagMessage](#ondewo.nlu.IntentTagMessage) | [.google.protobuf.Empty](#google.protobuf.Empty) |  |
 | BatchCreateTrainingPhrases | [BatchCreateTrainingPhrasesRequest](#ondewo.nlu.BatchCreateTrainingPhrasesRequest) | [BatchTrainingPhrasesStatusResponse](#ondewo.nlu.BatchTrainingPhrasesStatusResponse) | Creates batch of training phrases |
 | BatchGetTrainingPhrases | [BatchGetTrainingPhrasesRequest](#ondewo.nlu.BatchGetTrainingPhrasesRequest) | [BatchTrainingPhrasesStatusResponse](#ondewo.nlu.BatchTrainingPhrasesStatusResponse) | Retrieve a training phrases batch of the specified names. |
 | BatchUpdateTrainingPhrases | [BatchUpdateTrainingPhrasesRequest](#ondewo.nlu.BatchUpdateTrainingPhrasesRequest) | [BatchTrainingPhrasesStatusResponse](#ondewo.nlu.BatchTrainingPhrasesStatusResponse) | Updates batch of training phrases |
