@@ -63,6 +63,8 @@
     - [AltSentence](#ondewo.nlu.AltSentence)
     - [AltTrainingPhrase](#ondewo.nlu.AltTrainingPhrase)
     - [BertAugEnrichmentConfig](#ondewo.nlu.BertAugEnrichmentConfig)
+    - [ClassifyIntentsRequest](#ondewo.nlu.ClassifyIntentsRequest)
+    - [ClassifyIntentsResponse](#ondewo.nlu.ClassifyIntentsResponse)
     - [DataEnrichmentConfig](#ondewo.nlu.DataEnrichmentConfig)
     - [EntityDetected](#ondewo.nlu.EntityDetected)
     - [EntityEnrichmentConfig](#ondewo.nlu.EntityEnrichmentConfig)
@@ -83,6 +85,7 @@
     - [GetSynonymsRequest](#ondewo.nlu.GetSynonymsRequest)
     - [GetSynonymsResponse](#ondewo.nlu.GetSynonymsResponse)
     - [GloVeEnrichmentConfig](#ondewo.nlu.GloVeEnrichmentConfig)
+    - [IntentClassified](#ondewo.nlu.IntentClassified)
     - [Synonym](#ondewo.nlu.Synonym)
     - [ThesaurusEnrichmentConfig](#ondewo.nlu.ThesaurusEnrichmentConfig)
     - [Word2VecEnrichmentConfig](#ondewo.nlu.Word2VecEnrichmentConfig)
@@ -90,6 +93,8 @@
     - [XLNetAugEnrichmentConfig](#ondewo.nlu.XLNetAugEnrichmentConfig)
   
     - [EntityTypeFuzzyNerConfig.FuzzyNerAlgorithm](#ondewo.nlu.EntityTypeFuzzyNerConfig.FuzzyNerAlgorithm)
+    - [IntentAlgorithms](#ondewo.nlu.IntentAlgorithms)
+    - [Mode](#ondewo.nlu.Mode)
   
     - [AiServices](#ondewo.nlu.AiServices)
   
@@ -1421,6 +1426,45 @@ Operation <response: [google.protobuf.Empty][google.protobuf.Empty], metadata: [
 
 
 
+<a name="ondewo.nlu.ClassifyIntentsRequest"></a>
+
+### ClassifyIntentsRequest
+The request for intent classification.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | the parent of the request Format: `projects/<Project ID>`. |
+| text | [string](#string) |  | the input text |
+| language_code | [string](#string) |  | the input language |
+| active_contexts | [bool](#bool) |  | Optional: if restrict classification result with input contexts listed in the field `context_names` |
+| context_names | [string](#string) | repeated | Optional: names of the input contexts to restrict the classification result with. Intents can only be classified if the intent's input context set is the subset of the given context set. |
+| mode | [Mode](#ondewo.nlu.Mode) |  | Optional: Which mode to use: EXCLUSIVE - skip algorithms listed in `algorithms` field, INCLUSIVE - run ONLY algorithms listed in `algorithms` field, UNSPECIFIED - default mode, described in agent config |
+| algorithms | [IntentAlgorithms](#ondewo.nlu.IntentAlgorithms) | repeated | Optional: Algorithm list |
+
+
+
+
+
+
+<a name="ondewo.nlu.ClassifyIntentsResponse"></a>
+
+### ClassifyIntentsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| intents_classified | [IntentClassified](#ondewo.nlu.IntentClassified) | repeated |  |
+| text | [string](#string) |  |  |
+| active_contexts | [bool](#bool) |  |  |
+| context_names | [string](#string) | repeated |  |
+
+
+
+
+
+
 <a name="ondewo.nlu.DataEnrichmentConfig"></a>
 
 ### DataEnrichmentConfig
@@ -1776,6 +1820,24 @@ The request to detect parameters.
 
 
 
+<a name="ondewo.nlu.IntentClassified"></a>
+
+### IntentClassified
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| intent_name | [string](#string) |  | The unique identifier of this intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`. |
+| intent_display_name | [string](#string) |  | The name of the intent. |
+| classifier | [string](#string) |  |  |
+| score | [float](#float) |  |  |
+
+
+
+
+
+
 <a name="ondewo.nlu.Synonym"></a>
 
 ### Synonym
@@ -1873,6 +1935,45 @@ Enum of fuzzy ner algorithms
 | LOCAL_MAXIMUM | 1 |  |
 
 
+
+<a name="ondewo.nlu.IntentAlgorithms"></a>
+
+### IntentAlgorithms
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| OndewoIntentExactContextDetector | 0 |  |
+| OndewoIntentExactMatch | 1 |  |
+| OndewoIntentNamedExactMatch | 2 |  |
+| OndewoIntentSimilarityMatch | 3 |  |
+| OndewoIntentNamedSimilarityMatch | 4 |  |
+| OndewoIntentFastTextClassifier | 5 |  |
+| OndewoIntentMachineLearningMatch | 6 |  |
+| OndewoIntentBertClassifier | 7 |  |
+| OndewoIntentMetaClassifier | 8 |  |
+| OndewoIntentSnipsClassifier | 9 |  |
+| IntentExitDetector | 10 |  |
+| OndewoIntentRankingMatch | 11 |  |
+| OndewoIntentRasaClassifier | 12 |  |
+| OndewoWeightedEnsemble | 13 |  |
+| OndewoIntentExitDetector | 14 |  |
+| OndewoIntentParameterMatch | 15 |  |
+
+
+
+<a name="ondewo.nlu.Mode"></a>
+
+### Mode
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| UNSPECIFIED | 0 |  |
+| EXCLUSIVE | 1 |  |
+| INCLUSIVE | 2 |  |
+
+
  <!-- end enums -->
 
  <!-- end HasExtensions -->
@@ -1891,6 +1992,7 @@ The Central class defining the ondewo ai services
 | GetAlternativeSentences | [GetAlternativeSentencesRequest](#ondewo.nlu.GetAlternativeSentencesRequest) | [GetAlternativeSentencesResponse](#ondewo.nlu.GetAlternativeSentencesResponse) |  |
 | GetAlternativeTrainingPhrases | [GetAlternativeTrainingPhrasesRequest](#ondewo.nlu.GetAlternativeTrainingPhrasesRequest) | [GetAlternativeTrainingPhrasesResponse](#ondewo.nlu.GetAlternativeTrainingPhrasesResponse) |  |
 | GetSynonyms | [GetSynonymsRequest](#ondewo.nlu.GetSynonymsRequest) | [GetSynonymsResponse](#ondewo.nlu.GetSynonymsResponse) |  |
+| ClassifyIntents | [ClassifyIntentsRequest](#ondewo.nlu.ClassifyIntentsRequest) | [ClassifyIntentsResponse](#ondewo.nlu.ClassifyIntentsResponse) |  |
 | ExtractEntitiesFuzzy | [ExtractEntitiesFuzzyRequest](#ondewo.nlu.ExtractEntitiesFuzzyRequest) | [ExtractEntitiesResponse](#ondewo.nlu.ExtractEntitiesResponse) | Processes a natural language query and returns detected entities |
 
  <!-- end services -->

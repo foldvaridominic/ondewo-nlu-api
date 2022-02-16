@@ -350,6 +350,8 @@
                       
                         <li><a href="#ondewo.nlu.AiServices.GetSynonyms" class="title-badge method">GetSynonyms</a></li>
                       
+                        <li><a href="#ondewo.nlu.AiServices.ClassifyIntents" class="title-badge method">ClassifyIntents</a></li>
+                      
                         <li><a href="#ondewo.nlu.AiServices.ExtractEntitiesFuzzy" class="title-badge method">ExtractEntitiesFuzzy</a></li>
                       
                       </ul>
@@ -372,6 +374,14 @@
                     
                       <li>
                         <a href="#ondewo.nlu.BertAugEnrichmentConfig" class="title-badge message">BertAugEnrichmentConfig</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.nlu.ClassifyIntentsRequest" class="title-badge message">ClassifyIntentsRequest</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.nlu.ClassifyIntentsResponse" class="title-badge message">ClassifyIntentsResponse</a>
                       </li>
                     
                       <li>
@@ -455,6 +465,10 @@
                       </li>
                     
                       <li>
+                        <a href="#ondewo.nlu.IntentClassified" class="title-badge message">IntentClassified</a>
+                      </li>
+                    
+                      <li>
                         <a href="#ondewo.nlu.Synonym" class="title-badge message">Synonym</a>
                       </li>
                     
@@ -482,6 +496,14 @@
                     
                       <li>
                         <a href="#ondewo.nlu.EntityTypeFuzzyNerConfig.FuzzyNerAlgorithm" class="title-badge enum">EntityTypeFuzzyNerConfig.FuzzyNerAlgorithm</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.nlu.IntentAlgorithms" class="title-badge enum">IntentAlgorithms</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.nlu.Mode" class="title-badge enum">Mode</a>
                       </li>
                     
                   </ul>
@@ -4793,6 +4815,12 @@ Format: `projects/<Project ID>`. </p></td>
 
           
         
+          <h4 id="ondewo.nlu.AiServices.ClassifyIntents" class="title-badge method">ClassifyIntents</h4>
+
+          <pre>rpc ClassifyIntents (<a href="#ondewo.nlu.ClassifyIntentsRequest">ClassifyIntentsRequest</a>) returns (<a href="#ondewo.nlu.ClassifyIntentsResponse">ClassifyIntentsResponse)</a></pre>
+
+          
+        
           <h4 id="ondewo.nlu.AiServices.ExtractEntitiesFuzzy" class="title-badge method">ExtractEntitiesFuzzy</h4>
 
           <pre>rpc ExtractEntitiesFuzzy (<a href="#ondewo.nlu.ExtractEntitiesFuzzyRequest">ExtractEntitiesFuzzyRequest</a>) returns (<a href="#ondewo.nlu.ExtractEntitiesResponse">ExtractEntitiesResponse)</a></pre>
@@ -4871,6 +4899,16 @@ Format: `projects/<Project ID>`. </p></td>
                 <td>GetSynonyms</td>
                 <td>POST</td>
                 <td>/v2/{parent=projects/*/agent}/get_synonyms</td>
+                <td>*</td>
+              </tr>
+              
+            
+              
+              
+              <tr>
+                <td>ClassifyIntents</td>
+                <td>POST</td>
+                <td>/v2/{parent=projects/*/agent}/classify_intent</td>
                 <td>*</td>
               </tr>
               
@@ -4976,6 +5014,122 @@ Format: `projects/<Project ID>`. </p></td>
                   <td>execution_order</td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.nlu.ClassifyIntentsRequest" class="title-badge message">ClassifyIntentsRequest</h3>
+        <p>The request for intent classification.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>parent</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the parent of the request
+Format: `projects/<Project ID>`. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>text</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the input text </p></td>
+                </tr>
+              
+                <tr>
+                  <td>language_code</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the input language </p></td>
+                </tr>
+              
+                <tr>
+                  <td>active_contexts</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Optional: if restrict classification result with input contexts listed in the field `context_names` </p></td>
+                </tr>
+              
+                <tr>
+                  <td>context_names</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Optional: names of the input contexts to restrict the classification result with.
+Intents can only be classified if the intent's input context set is the subset of the given context set. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>mode</td>
+                  <td><a href="#ondewo.nlu.Mode">Mode</a></td>
+                  <td></td>
+                  <td><p>Optional: Which mode to use:
+EXCLUSIVE - skip algorithms listed in `algorithms` field,
+INCLUSIVE - run ONLY algorithms listed in `algorithms` field,
+UNSPECIFIED - default mode, described in agent config </p></td>
+                </tr>
+              
+                <tr>
+                  <td>algorithms</td>
+                  <td><a href="#ondewo.nlu.IntentAlgorithms">IntentAlgorithms</a></td>
+                  <td>repeated</td>
+                  <td><p>Optional: Algorithm list </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.nlu.ClassifyIntentsResponse" class="title-badge message">ClassifyIntentsResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>intents_classified</td>
+                  <td><a href="#ondewo.nlu.IntentClassified">IntentClassified</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>text</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>active_contexts</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>context_names</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -5845,6 +5999,52 @@ as duplicate. Meaningful values of similarity_threshold are between 0.95 and 1.0
 
         
       
+        <h3 id="ondewo.nlu.IntentClassified" class="title-badge message">IntentClassified</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>intent_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The unique identifier of this intent.
+Format: `projects/<Project ID>/agent/intents/<Intent ID>`. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>intent_display_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The name of the intent. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>classifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>score</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="ondewo.nlu.Synonym" class="title-badge message">Synonym</h3>
         <p></p>
 
@@ -6050,6 +6250,142 @@ as duplicate. Meaningful values of similarity_threshold are between 0.95 and 1.0
               <tr>
                 <td>LOCAL_MAXIMUM</td>
                 <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="ondewo.nlu.IntentAlgorithms" class="title-badge enum">IntentAlgorithms</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>OndewoIntentExactContextDetector</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>OndewoIntentExactMatch</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>OndewoIntentNamedExactMatch</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>OndewoIntentSimilarityMatch</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>OndewoIntentNamedSimilarityMatch</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>OndewoIntentFastTextClassifier</td>
+                <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>OndewoIntentMachineLearningMatch</td>
+                <td>6</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>OndewoIntentBertClassifier</td>
+                <td>7</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>OndewoIntentMetaClassifier</td>
+                <td>8</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>OndewoIntentSnipsClassifier</td>
+                <td>9</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>IntentExitDetector</td>
+                <td>10</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>OndewoIntentRankingMatch</td>
+                <td>11</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>OndewoIntentRasaClassifier</td>
+                <td>12</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>OndewoWeightedEnsemble</td>
+                <td>13</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>OndewoIntentExitDetector</td>
+                <td>14</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>OndewoIntentParameterMatch</td>
+                <td>15</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="ondewo.nlu.Mode" class="title-badge enum">Mode</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNSPECIFIED</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>EXCLUSIVE</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>INCLUSIVE</td>
+                <td>2</td>
                 <td><p></p></td>
               </tr>
             
