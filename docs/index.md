@@ -5160,6 +5160,7 @@ defaults to 0 if not set |
 | max_number_turns | [int32](#int32) |  | defaults to MAXINT if not set |
 | labels | [string](#string) | repeated | Match only session which have all of the following labels assigned |
 | user_ids | [string](#string) | repeated | Match only session which had all of the following user_ids interacting with them. |
+| intent_tags | [string](#string) | repeated | Match only session which have all of the following intent tags assigned |
 
 
 
