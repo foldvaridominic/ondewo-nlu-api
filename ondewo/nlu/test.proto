@@ -4,6 +4,7 @@ message Test {
     string name = 1;
     }
 
-    service SimpleService {
-        rpc SendTest (Test) returns (Test);
-        }
+service SimpleService {
+    rpc RecieveTest (Test) returns (Test);
+    rpc SendTest (Test) returns (Test);
+    }
