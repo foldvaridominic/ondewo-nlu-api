@@ -11,7 +11,7 @@ service SimpleService {
 
 
 message NewTest {
-    string name = 3;
+    string name = 4;
     }
 
 service NewSimpleService {
